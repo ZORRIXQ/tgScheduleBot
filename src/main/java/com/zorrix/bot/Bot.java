@@ -1,13 +1,12 @@
 package com.zorrix.bot;
 
-import com.zorrix.parser.SheetsParser;
+import com.zorrix.parser.SheetsParserService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.IOException;
 
 public class Bot extends TelegramLongPollingBot {
@@ -24,15 +23,15 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        SheetsParser parser = new SheetsParser(this.fileName);
+        SheetsParserService parser = new SheetsParserService(this.fileName);
         try {
-            DataSearch dataSearcher = new DataSearch(parser.parseSubjects());
+            DataSearchService dataSearcherService = new DataSearchService(parser.parseSubjects());
             Long userId = update.getMessage().getChatId();
             String userName = update.getMessage().getFrom().getUserName();
 
             SendMessage sendMessage = SendMessage.builder()
                     .chatId(userId.toString())
-                    .text(dataSearcher.findDaySubjects())
+                    .text(dataSearcherService.findDaySubjects(false))
                     .build();
             this.sendApiMethod(sendMessage);
         } catch (IOException | InvalidFormatException | TelegramApiException e) {

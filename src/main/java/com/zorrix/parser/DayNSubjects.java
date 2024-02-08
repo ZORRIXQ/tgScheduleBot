@@ -12,7 +12,7 @@ public class DayNSubjects {
     }
 
     public String getDayOfWeek() {
-        return dayOfWeek;
+        return this.dayOfWeek;
     }
 
     public void setDayOfWeek(String dayOfWeek) {

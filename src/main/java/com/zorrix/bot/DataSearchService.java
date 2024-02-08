@@ -4,33 +4,41 @@ import com.zorrix.parser.DayNSubjects;
 
 import java.util.*;
 
-public class DataSearch {
+public class DataSearchService {
     private HashMap<Integer, ArrayList<DayNSubjects>> dataMap;
 
-    public DataSearch(HashMap<Integer, ArrayList<DayNSubjects>> map){
+    public DataSearchService(HashMap<Integer, ArrayList<DayNSubjects>> map){
         this.dataMap = map;
     }
 
-    //should this method return String result, or DayNSubjects object for current day?
-    public String findDaySubjects(){
+    public String findDaySubjects(boolean TomorrowSchedule){
         Calendar calendar = Calendar.getInstance();
+
+        if (TomorrowSchedule)
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        //number(index) of week we're going to search in
         int weekToSearchIn = calendar.get(Calendar.WEEK_OF_MONTH);
 
         StringBuilder stringBuilder = new StringBuilder("Subjects on the " + calendar.get(Calendar.DAY_OF_MONTH)
                 + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH) + ":\n");
 
+        StringBuilder temp = new StringBuilder();
         //iterating trough each dataMap's week
         for (DayNSubjects dayNSubjects : this.dataMap.get(weekToSearchIn)){
 
             //printing searched day of week and it's subjects
-
             if (dayNSubjects.getDayOfWeek().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH)) ||
                     dayNSubjects.getDayOfWeek().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())) ) {
-                stringBuilder.append(dayNSubjects.getDayOfWeek() + ": "
+                temp.append(dayNSubjects.getDayOfWeek() + ": "
                         + Arrays.toString(dayNSubjects.getSubjects()).replaceAll("[\\Q[]\\E]", "") + "\n");
             }
         }
 
+        if (temp.isEmpty())
+            temp.append("No subjects " + (TomorrowSchedule ? "tomorrow" : "today"));
+
+        stringBuilder.append(temp);
         return stringBuilder.toString();
     }
 }

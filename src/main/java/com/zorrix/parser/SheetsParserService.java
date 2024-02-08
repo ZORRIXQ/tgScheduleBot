@@ -2,7 +2,6 @@ package com.zorrix.parser;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -10,17 +9,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class SheetsParser {
+public class SheetsParserService {
     private final String nullStr = "null";
     private String fileName;
 
-    public SheetsParser(String fileName) {
+    public SheetsParserService(String fileName) {
         this.fileName = fileName;
     }
 

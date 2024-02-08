@@ -1,9 +1,9 @@
 package com.zorrix;
 
 import com.zorrix.bot.Bot;
-import com.zorrix.bot.DataSearch;
+import com.zorrix.bot.DataSearchService;
 import com.zorrix.parser.DayNSubjects;
-import com.zorrix.parser.SheetsParser;
+import com.zorrix.parser.SheetsParserService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -23,10 +23,10 @@ public class Main {
 
         telegramBotsApi.registerBot(bot);
 
-        SheetsParser parser = new SheetsParser(fileName);
+        SheetsParserService parser = new SheetsParserService(fileName);
         Map<Integer, ArrayList<DayNSubjects>> map = parser.parseSubjects();
 
-        DataSearch searcher = new DataSearch(parser.parseSubjects());
-        System.out.println(searcher.findDaySubjects());
+        DataSearchService searcher = new DataSearchService(parser.parseSubjects());
+        System.out.println(searcher.findDaySubjects(true));
     }
 }
