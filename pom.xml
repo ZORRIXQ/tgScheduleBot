@@ -6,12 +6,13 @@
 
   <groupId>com.zorrix</groupId>
   <artifactId>scheduleBot</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.2.2-SNAPSHOT</version>
 
   <name>scheduleBot</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mainClass>com.zorrix.Main</mainClass>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
   </properties>
