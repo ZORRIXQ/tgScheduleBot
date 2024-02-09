@@ -9,16 +9,13 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.io.IOException;
 
 public class TomorrowSchedule implements Command{
-    private String fileName;
-
     private final SendBotMessageService sendBotMessageService;
 
-    TomorrowSchedule(String fileName, SendBotMessageService sendBotMessageService) throws IOException, InvalidFormatException {
-        this.fileName = fileName;
+    TomorrowSchedule( SendBotMessageService sendBotMessageService) throws IOException, InvalidFormatException {
         this.sendBotMessageService = sendBotMessageService;
     }
 
-    SheetsParserService parser = new SheetsParserService(fileName);
+    SheetsParserService parser = new SheetsParserService();
     DataSearchService searcher = new DataSearchService(parser.parseSubjects());
     private final String TODAY_SCHEDULE = searcher.findDaySubjects(true);
 

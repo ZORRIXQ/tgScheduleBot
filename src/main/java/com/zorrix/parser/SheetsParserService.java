@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import static com.zorrix.Constants.fileName;
+
 public class SheetsParserService {
     private final String nullStr = "null";
-    private String fileName;
 
-    public SheetsParserService(String fileName) {
-        this.fileName = fileName;
+    public SheetsParserService() {
+
     }
 
     /*
@@ -29,7 +30,7 @@ public class SheetsParserService {
     public HashMap<Integer, ArrayList<DayNSubjects>> parseSubjects() throws IOException, InvalidFormatException {
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
-        FileInputStream fileInputStream = new FileInputStream(this.fileName);
+        FileInputStream fileInputStream = new FileInputStream(fileName);
 
         XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(fileInputStream);
 
@@ -56,7 +57,7 @@ public class SheetsParserService {
                 Cell cell = cellIterator.next();
                 String temp;
                 Cell currentDayCell = daysIterator.next();
-                String currentDay = currentDayCell.getStringCellValue();
+                String currentDay = currentDayCell.getStringCellValue().toLowerCase();
 
                 switch (cell.getCellType()) {
                     case _NONE, BLANK, BOOLEAN, FORMULA, ERROR:
@@ -66,7 +67,7 @@ public class SheetsParserService {
                     case STRING:
                         temp = cell.getStringCellValue();
                         if (temp.contains(nullStr) || temp.contains("Weeks")) continue;
-                        temp = cell.getStringCellValue();
+                        temp = cell.getStringCellValue().toLowerCase();
 
                         //putting each currentDay's subject into the subjects array
                         String[] subjects = temp.split("[,_;:]");

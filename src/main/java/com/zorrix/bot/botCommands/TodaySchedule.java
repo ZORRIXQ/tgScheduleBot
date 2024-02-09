@@ -1,5 +1,6 @@
 package com.zorrix.bot.botCommands;
 
+import com.zorrix.Constants;
 import com.zorrix.bot.DataSearchService;
 import com.zorrix.bot.SendBotMessageService;
 import com.zorrix.parser.SheetsParserService;
@@ -13,12 +14,12 @@ public class TodaySchedule implements Command{
 
     private final SendBotMessageService sendBotMessageService;
 
-    TodaySchedule(String fileName, SendBotMessageService sendBotMessageService) throws IOException, InvalidFormatException {
+    TodaySchedule(SendBotMessageService sendBotMessageService) throws IOException, InvalidFormatException {
         this.fileName = fileName;
         this.sendBotMessageService = sendBotMessageService;
     }
 
-    SheetsParserService parser = new SheetsParserService(fileName);
+    SheetsParserService parser = new SheetsParserService();
     DataSearchService searcher = new DataSearchService(parser.parseSubjects());
     private final String TODAY_SCHEDULE = searcher.findDaySubjects(false);
 

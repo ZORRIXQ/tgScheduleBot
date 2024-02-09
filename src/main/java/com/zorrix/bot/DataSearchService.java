@@ -28,10 +28,15 @@ public class DataSearchService {
         for (DayNSubjects dayNSubjects : this.dataMap.get(weekToSearchIn)){
 
             //printing searched day of week and it's subjects
-            if (dayNSubjects.getDayOfWeek().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH)) ||
-                    dayNSubjects.getDayOfWeek().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault())) ) {
-                temp.append(dayNSubjects.getDayOfWeek() + ": "
-                        + Arrays.toString(dayNSubjects.getSubjects()).replaceAll("[\\Q[]\\E]", "") + "\n");
+            if (dayNSubjects.getDayOfWeek().toLowerCase().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH).toLowerCase()) ||
+                    dayNSubjects.getDayOfWeek().equals(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()).toLowerCase()) ) {
+
+                temp.append(dayNSubjects.getDayOfWeek() + ": ");
+
+                for (int i = 0; i < dayNSubjects.getSubjects().length; i++)
+                    temp.append("\n" + (i+1) + ". " + dayNSubjects.getSubjects()[i].trim());
+
+//                        + Arrays.toString(dayNSubjects.getSubjects()).replaceAll("]", "\n").replaceAll("\\[", "") + "\n");
             }
         }
 

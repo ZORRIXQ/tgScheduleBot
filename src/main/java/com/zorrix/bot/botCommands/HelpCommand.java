@@ -10,10 +10,10 @@ public class HelpCommand implements Command{
     private final SendBotMessageService sendBotMessageService;
 
     private final String HELP_MESSAGE = "List of my commands: \n" +
-            START_COMMAND.name() + " - start me \n" +
-            CHANGE_TIME.name() + " - change time to send schedule \n" +
-            TODAY_SCHEDULE_COMMAND.name() + " - send today's schedule \n" +
-            TOMORROW_SCHEDULE_COMMAND.name() + " - send tomorrow's schedule";
+            START_COMMAND.getCommandName() + " - start me \n" +
+            CHOOSE_TIME_COMMAND.getCommandName() + " - change time to send schedule \n" +
+            TODAY_SCHEDULE_COMMAND.getCommandName() + " - send today's schedule \n" +
+            TOMORROW_SCHEDULE_COMMAND.getCommandName() + " - send tomorrow's schedule";
 
     public HelpCommand(SendBotMessageService sendBotMessageService) {
         this.sendBotMessageService = sendBotMessageService;

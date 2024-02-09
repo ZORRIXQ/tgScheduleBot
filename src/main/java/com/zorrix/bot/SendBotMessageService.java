@@ -5,7 +5,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class SendBotMessageService {
     private final Bot bot;
-    private final String botToken = "6427035917:AAHlKYY1uQ0jyFpFXJOtbmczo8pIemVUYO4";
 
     public SendBotMessageService(Bot bot) {
         this.bot = bot;
