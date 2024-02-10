@@ -1,22 +1,18 @@
 package com.zorrix.parser;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import static com.zorrix.Constants.fileName;
-
 public class SheetsParserService {
-    private final String nullStr = "null";
 
     public SheetsParserService() {
 
@@ -27,12 +23,14 @@ public class SheetsParserService {
     * writing it to the 7 DayNSubjects,
     * putting 4 weeks (each made of 7 DayNSubjects) into the map in output;
     */
-    public HashMap<Integer, ArrayList<DayNSubjects>> parseSubjects() throws IOException, InvalidFormatException {
+    public HashMap<Integer, ArrayList<DayNSubjects>> parseSubjects() throws IOException {
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
-        FileInputStream fileInputStream = new FileInputStream(fileName);
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("test.xlsx");
 
-        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(fileInputStream);
+
+        assert inputStream != null;
+        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
 
 
         XSSFSheet sheet = wb.getSheetAt(0);
@@ -59,6 +57,7 @@ public class SheetsParserService {
                 Cell currentDayCell = daysIterator.next();
                 String currentDay = currentDayCell.getStringCellValue().toLowerCase();
 
+                String nullStr = "null";
                 switch (cell.getCellType()) {
                     case _NONE, BLANK, BOOLEAN, FORMULA, ERROR:
                         continue;
@@ -79,7 +78,7 @@ public class SheetsParserService {
             weekIterator++;
         }
 
-        fileInputStream.close();
+        inputStream.close();
         wb.close();
         return result;
     }
