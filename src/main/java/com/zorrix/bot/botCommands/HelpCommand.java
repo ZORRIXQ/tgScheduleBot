@@ -11,7 +11,7 @@ public class HelpCommand implements Command{
 
     private final String HELP_MESSAGE = "List of my commands: \n" +
             START_COMMAND.getCommandName() + " - start me \n" +
-            CHOOSE_TIME_COMMAND.getCommandName() + " - change time to send schedule (not available now)\n" +
+//            CHOOSE_TIME_COMMAND.getCommandName() + " - change time to send schedule (not available now)\n" +
             TODAY_SCHEDULE_COMMAND.getCommandName() + " - send today's schedule \n" +
             TOMORROW_SCHEDULE_COMMAND.getCommandName() + " - send tomorrow's schedule";
 
