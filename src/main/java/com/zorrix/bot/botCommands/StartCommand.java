@@ -5,7 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class StartCommand implements Command{
     private final SendBotMessageService sendBotMessageService;
-    private final String START_MESSAGE = "Hello, dear user! type a /choose_time to set a time, bot should send you a schedule";
+//    private final String START_MESSAGE = "Hello, dear user! type a /choose_time to set a time, bot should send you a schedule";
+    private final String START_MESSAGE = "Hello, dear user! type a /help to see my commands";
 
     StartCommand(SendBotMessageService sendBotMessageService){
         this.sendBotMessageService = sendBotMessageService;
