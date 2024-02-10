@@ -27,7 +27,7 @@ public class Main {
         Map<Integer, ArrayList<DayNSubjects>> map = parser.parseSubjects();
 
         DataSearchService searcher = new DataSearchService(parser.parseSubjects());
-        System.out.println(searcher.findDaySubjects(true));
-        System.out.println(searcher.findDaySubjects(false));
+
+        System.out.println("Bot is working!");
     }
 }
