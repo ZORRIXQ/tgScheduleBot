@@ -12,26 +12,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import static com.zorrix.Constants.FILE_NAME;
+
+//service responding for parsing .xlsx file with schedule
 public class SheetsParserService {
-
-    public SheetsParserService() {
-
-    }
-
     /*
     * method, which parsing whole xlsx sheet,
     * writing it to the 7 DayNSubjects,
     * putting 4 weeks (each made of 7 DayNSubjects) into the map in output;
     */
     public HashMap<Integer, ArrayList<DayNSubjects>> parseSubjects() throws IOException {
+        //init the result hashmap
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("test.xlsx");
-
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
 
         assert inputStream != null;
         XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
-
 
         XSSFSheet sheet = wb.getSheetAt(0);
         Iterator<Row> rowIterator = sheet.iterator();
@@ -54,6 +51,8 @@ public class SheetsParserService {
             while (cellIterator.hasNext()){
                 Cell cell = cellIterator.next();
                 String temp;
+
+                //iterating trough each day of week, writing its name into the currentDay
                 Cell currentDayCell = daysIterator.next();
                 String currentDay = currentDayCell.getStringCellValue().toLowerCase();
 

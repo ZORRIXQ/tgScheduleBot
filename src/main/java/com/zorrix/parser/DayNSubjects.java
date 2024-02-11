@@ -1,7 +1,6 @@
 package com.zorrix.parser;
 
-import java.util.ArrayList;
-
+//class that contains String day of week and an arraylist with subjects for that day
 public class DayNSubjects {
     private String dayOfWeek;
     private final String[] subjects;
