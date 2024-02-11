@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="scheduleBot:jar">
+  <artifact type="jar" name="scheduleBot:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/scheduleBot_jar</output-path>
     <root id="archive" name="scheduleBot.jar">
       <element id="module-output" name="scheduleBot" />
