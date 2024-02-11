@@ -31,7 +31,7 @@ public class SheetsParserService {
 
 //        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
 
-        FileInputStream inputStream = new FileInputStream("src/main/resources/" + FILE_NAME);
+        FileInputStream inputStream = new FileInputStream(FILE_NAME);
 
         XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
 
