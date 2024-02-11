@@ -30,10 +30,12 @@ public class SheetsParserService {
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
 //        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+//        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
 
-        FileInputStream inputStream = new FileInputStream(FILE_NAME);
 
-        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
+        FileInputStream inputStream = new FileInputStream("src/main/resources/" + FILE_NAME);
+
+        XSSFWorkbook wb = new XSSFWorkbook(inputStream);
 
         XSSFSheet sheet = wb.getSheetAt(0);
         Iterator<Row> rowIterator = sheet.iterator();
