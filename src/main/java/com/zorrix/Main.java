@@ -16,7 +16,7 @@ import static com.zorrix.Constants.*;
 
 public class Main {
     public static void main(String[] args) throws TelegramApiException, IOException, InvalidFormatException {
-        Bot bot = new Bot(BOT_TOKEN, BOT_NAME, FILE_NAME);
+        Bot bot = new Bot(Constants.BOT_TOKEN, BOT_NAME, Constants.FILE_NAME);
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 
         //starting the bot

@@ -2,19 +2,16 @@ package com.zorrix.parser;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ooxml.*;
-import org.apache.poi.hssf.*;
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
 
 import static com.zorrix.Constants.FILE_NAME;
 
@@ -29,15 +26,14 @@ public class SheetsParserService {
         //init the result hashmap
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+        InputStream inputStream = getClass().getResourceAsStream("/"+FILE_NAME);
         assert inputStream != null;
-        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(new File(FILE_NAME));
+        Workbook wb = new XSSFWorkbook(inputStream);
 
-
-//        FileInputStream inputStream = new FileInputStream(FILE_NAME);
+  //      FileInputStream inputStream = new FileInputStream(fileName);
 //        XSSFWorkbook wb = new XSSFWorkbook(inputStream);
 
-        XSSFSheet sheet = wb.getSheetAt(0);
+        XSSFSheet sheet = (XSSFSheet) wb.getSheetAt(0);
         Iterator<Row> rowIterator = sheet.iterator();
 
         Row row = rowIterator.next();
@@ -84,7 +80,6 @@ public class SheetsParserService {
             weekIterator++;
         }
 
-        inputStream.close();
         wb.close();
         return result;
     }
