@@ -6,7 +6,7 @@
 
   <groupId>com.zorrix</groupId>
   <artifactId>scheduleBot</artifactId>
-  <version>1.2.2-SNAPSHOT</version>
+  <version>1.4-SNAPSHOT</version>
 
   <name>scheduleBot</name>
 
@@ -32,21 +32,17 @@
       <version>6.9.7.0</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi</artifactId>
       <version>5.2.5</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
     <dependency>
       <groupId>org.apache.poi</groupId>
       <artifactId>poi-ooxml</artifactId>
       <version>5.2.5</version>
     </dependency>
-
-
 
   </dependencies>
 

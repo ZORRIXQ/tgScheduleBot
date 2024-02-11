@@ -8,6 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ooxml.*;
 import org.apache.poi.hssf.*;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,9 +29,10 @@ public class SheetsParserService {
         //init the result hashmap
         HashMap<Integer, ArrayList<DayNSubjects>> result = new HashMap<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
+//        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
 
-        assert inputStream != null;
+        FileInputStream inputStream = new FileInputStream("src/main/resources/" + FILE_NAME);
+
         XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
 
         XSSFSheet sheet = wb.getSheetAt(0);
