@@ -7,7 +7,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ooxml.*;
 import org.apache.poi.hssf.*;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.apache.poi.hssf.usermodel.HSSFWorkbookFactory;
 
 import static com.zorrix.Constants.FILE_NAME;
 
@@ -31,7 +31,7 @@ public class SheetsParserService {
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(FILE_NAME);
         assert inputStream != null;
-        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(inputStream);
+        XSSFWorkbook wb = (XSSFWorkbook) WorkbookFactory.create(new File(FILE_NAME));
 
 
 //        FileInputStream inputStream = new FileInputStream(FILE_NAME);
